@@ -15,4 +15,10 @@ node {
    stage 'Build'
    // Run the maven build
    sh "${mvnHome}/bin/mvn clean install"
+   
+   // Mark the code deploy 'stage'....
+   stage 'deploy'
+   // Run the maven deploy
+   sh "${mvnHome}/bin/mvn clean install "
+   
 }
