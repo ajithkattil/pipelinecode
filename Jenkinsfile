@@ -1,5 +1,4 @@
 #!groovy
-   
 node {
    // Mark the code checkout 'stage'....
    stage 'Checkout'
@@ -16,18 +15,6 @@ node {
    stage 'Build'
    // Run the maven build
    sh "${mvnHome}/bin/mvn clean install"
-   
-   node {
-    try {
-        notifySlack()
-
-        // Existing build steps.
-    } catch (e) {
-        currentBuild.result = 'FAILURE'
-        throw e
-    } finally {
-        notifySlack(currentBuild.result)
-    }
    
    // Mark the code deploy 'stage'....
    stage 'deploy'
