@@ -1,24 +1,48 @@
 #!groovy
-node {
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
+
+
+
+//node {
    // Mark the code checkout 'stage'....
-   stage 'Checkout'
+  // stage 'Checkout'
 
    // Checkout code from repository
-   checkout scm
+   //checkout scm
 
    // Get the maven tool.
    // ** NOTE: This 'M3' maven tool must be configured
    // **       in the global configuration.
-   def mvnHome = tool 'M3'
+   //def mvnHome = tool 'M3'
 
    // Mark the code build 'stage'....
-   stage 'Build'
+   //stage 'Build'
    // Run the maven build
-   sh "${mvnHome}/bin/mvn clean install"
+   //sh "${mvnHome}/bin/mvn clean install"
    
    // Mark the code deploy 'stage'....
-   stage 'deploy'
+   //stage 'deploy'
    // Run the maven deploy
-   sh "${mvnHome}/bin/mvn clean install "
+   //sh "${mvnHome}/bin/mvn clean install "
    
-}
+//}
